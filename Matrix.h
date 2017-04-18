@@ -72,6 +72,19 @@ template <typename T> void operator <<(Matrix<T> Matr, T x[])
 			Matr.push(count_row, count_column, x[count_row * Matr.total_columns() + count_column]);
 }
 
+template <typename T> void operator <<(Matrix<T> Matr_1, Matrix<T> Matr_2)
+{
+	if(Matr_1.total_rows() != Matr_2.total_rows() || Matr_1.total_columns() != Matr_2.total_columns())
+	{
+		std::cout << "Matrix copying is impossible" << std::endl;
+		exit(EXIT_FAILURE);
+	}
+	
+	for(int count_row = 0; count_row < Matr_1.total_rows(); count_row++)
+		for(int count_column = 0; count_column < Matr_1.total_columns(); count_column++)
+			Matr_1.push(count_row, count_column, Matr_2.get(count_row, count_column));
+}
+
 template <typename T> Matrix<T> operator *(Matrix<T> mtr_1, Matrix<T> mtr_2)
 {
 	T s = .0;
@@ -123,7 +136,7 @@ template <typename T> Matrix<T> operator -(Matrix<T> mtr_1, Matrix<T> mtr_2)
 	
 	if(mtr_1.total_rows() != mtr_2.total_rows() || mtr_1.total_columns() != mtr_2.total_columns())
 	{
-		std::cout << "Matrix addition is impossible" << std::endl;
+		std::cout << "Matrix subtraction is impossible" << std::endl;
 		exit(EXIT_FAILURE);
 		return matr_3;
 	}

@@ -24,5 +24,8 @@ int main(void)
 	(m-n).show();
 	(4.5*m).show();
 	
+	m << n;
+	m.show();
+	
 	return 0;
 }
